@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Socio - Biblioteca</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <div class="layout-wrapper">
+        
+        <main class="main-content">
+            
+            <header class="page-header">
+                <h1>Editar Socio</h1>
+                <a href="/pages/socios/" class="btn-text" style="text-decoration: none;">Volver a la lista</a>
+            </header>
+
+            <div style="max-width: 800px; background-color: var(--bg-surface); padding: 2rem; border-radius: var(--radius-card); border: 1px solid var(--border-color); box-shadow: var(--shadow-card);">
+                <form id="edit-form" class="form-minimal" style="grid-template-columns: 1fr 1fr; gap: 1.5rem;">
+                    
+                    <div class="field" style="grid-column: span 2;">
+                        <label>Legajo (No editable)</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="legajo" disabled style="background-color: #f9fafb; color: #6b7280;">
+                        </div>
+                    </div>
+
+                    <div class="field" style="grid-column: span 2;">
+                        <label>Nombre Completo *</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="nombre_completo" required>
+                        </div> 
+                    </div>
+                    
+                    <div class="field">
+                        <label>DNI (Opcional)</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="dni">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Tipo de Socio *</label>
+                        <div class="input-wrapper">
+                            <select id="tipo_socio" required>
+                                <option value="Alumno">Alumno</option>
+                                <option value="Docente">Docente</option>
+                                <option value="Personal">Personal</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- CAMPO CURSO (Oculto por defecto) -->
+                    <div class="field" id="curso-container" style="display: none;">
+                        <label>Curso</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="curso">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Teléfono</label>
+                        <div class="input-wrapper">
+                            <input type="text" id="telefono">
+                        </div>
+                    </div>
+
+                    <div class="field">
+                        <label>Email</label>
+                        <div class="input-wrapper">
+                            <input type="email" id="email">
+                        </div>
+                    </div>
+                    
+                    <div class="field" style="grid-column: span 2; margin-top: 2rem;">
+                        <button type="submit" class="btn-minimal">Actualizar Socio</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/js/layout.js"></script>
+    <script src="/js/socios/edit.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle del Socio - Biblioteca</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <div class="layout-wrapper">
+        
+        <!-- El Sidebar se inyecta aquí automáticamente por layout.js -->
+
+        <main class="main-content">
+            
+            <header class="page-header">
+                <h1>Detalle del Socio</h1>
+                <a href="/pages/socios/" class="btn-text" style="text-decoration: none;">Volver a la lista</a>
+            </header>
+
+            <div style="max-width: 600px;">
+                <div id="socio-detail" class="card-panel" style="padding: 2rem; border: 1px solid var(--border-color); border-radius: 8px; background-color: var(--bg-surface);">
+                    <p style="color: var(--text-muted);">Cargando datos del socio...</p>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/js/layout.js"></script>
+    <script src="/js/socios/show.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    /* Configuración de Módulos y Entorno */
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "target": "ESNext",
+    "moduleDetection": "force",
+    "verbatimModuleSyntax": true,
+    
+    /* Configuración de Directorios */
+    "rootDir": "./src",     // <-- LÍNEA DESCOMENTADA
+    "outDir": "./dist",
+    
+    /* Tipos de Node.js */
+    // "types": [], 
+    // "lib": ["ESNext"],
+
+    /* Opciones de Salida y Chequeo Estricto */
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "strict": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": true,
+    "noUncheckedSideEffectImports": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

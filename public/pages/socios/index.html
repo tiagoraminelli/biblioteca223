@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socios - Biblioteca</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <div class="layout-wrapper">
+        
+        <main class="main-content">
+            
+            <!-- HEADER CON BUSCADOR -->
+            <header class="page-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+                <h1>Socios</h1>
+                
+                <div style="display: flex; gap: 1rem; align-items: center; flex: 1; justify-content: flex-end;">
+                    <!-- Buscador -->
+                    <div class="input-wrapper" style="max-width: 300px; width: 100%;">
+                        <input type="text" id="search-input" placeholder="Buscar por legajo, nombre o DNI..." style="padding: 0.5rem 0.75rem; font-size: 0.875rem;">
+                    </div>
+                    <!-- Botón Nuevo Socio -->
+                    <a href="/pages/socios/create" class="btn-minimal" style="text-decoration: none; white-space: nowrap;">Nuevo Socio</a>
+                </div>
+            </header>
+
+            <table class="table-clean">
+                <thead>
+                    <tr>
+                        <th>Legajo</th>
+                        <th>Nombre</th>
+                        <th>DNI</th>
+                        <th>Tipo</th>
+                        <th style="text-align: right;">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="socios-table-body">
+                    <!-- Datos dinámicos cargados por JS -->
+                </tbody>
+            </table>
+
+            <!-- PAGINACIÓN Y FILAS POR PÁGINA -->
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
+                
+                <!-- Selector de cantidad -->
+                <div style="display: flex; align-items: center; gap: 0.5rem;">
+                    <span style="font-size: 0.875rem; color: var(--text-muted);">Filas por página:</span>
+                    <select id="limit-select" style="padding: 0.25rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.875rem; background: transparent; color: var(--text-main);">
+                        <option value="10">10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+
+                <!-- Info y Botones -->
+                <div style="display: flex; align-items: center; gap: 1.5rem;">
+                    <span id="pagination-info" style="font-size: 0.875rem; color: var(--text-muted);"></span>
+                    <div style="display: flex; gap: 0.5rem;">
+                        <button id="btn-prev" class="btn-minimal" style="padding: 0.5rem 1rem;">Anterior</button>
+                        <button id="btn-next" class="btn-minimal" style="padding: 0.5rem 1rem;">Siguiente</button>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script src="/js/layout.js"></script>
+    <script src="/js/socios/list.js"></script>
+    
+</body>
+</html>

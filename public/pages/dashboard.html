@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Biblioteca</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+
+    <div class="layout-wrapper">
+        <!-- El Sidebar se inyecta vía layout.js -->
+
+        <main class="main-content">
+            <header class="dashboard-header">
+                <h1>Buen día, Administrador</h1>
+                <p>Este es el resumen de la biblioteca hoy.</p>
+            </header>
+
+            <!-- Estadísticas -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-title">Socios Registrados</div>
+                    <div class="stat-value" id="stat-socios">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Libros en Catálogo</div>
+                    <div class="stat-value" id="stat-libros">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Préstamos Activos</div>
+                    <div class="stat-value" id="stat-prestamos">-</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-title">Préstamos Atrasados</div>
+                    <div class="stat-value" id="stat-atrasados" style="color: #b91c1c;">-</div>
+                </div>
+            </div>
+
+            <!-- Acciones Rápidas -->
+            <div class="quick-actions">
+                <h3>Acciones Rápidas</h3>
+                <div class="action-list">
+                    
+                    <div class="action-item">
+                        <div class="action-item-text">
+                            <h4>Registrar un nuevo socio</h4>
+                            <p>Inscribir a un alumno o docente en el sistema.</p>
+                        </div>
+                        <a href="/pages/socios/create" class="btn-text" style="text-decoration: none; font-weight: 600;">Ir a Socios &rarr;</a>
+                    </div>
+
+                    <div class="action-item">
+                        <div class="action-item-text">
+                            <h4>Ver listado de socios</h4>
+                            <p>Consultar, editar o eliminar socios existentes.</p>
+                        </div>
+                        <a href="/pages/socios/" class="btn-text" style="text-decoration: none; font-weight: 600;">Ver Listado &rarr;</a>
+                    </div>
+
+                    <div class="action-item">
+                        <div class="action-item-text">
+                            <h4>Prestar un recurso</h4>
+                            <p>Entregar un libro o equipo a un socio.</p>
+                        </div>
+                        <a href="#" class="btn-text" style="text-decoration: none; font-weight: 600;">Nuevo Préstamo &rarr;</a>
+                    </div>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="/js/layout.js"></script>
+    <script src="/js/dashboard.js"></script>
+</body>
+</html>
