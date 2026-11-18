@@ -1,63 +1,183 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Socios - Biblioteca</title>
     <link rel="stylesheet" href="/css/styles.css">
+    <style>
+        /* Estilos locales para el responsive y dropdown */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 100%;
+            margin-top: 0.5rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border-color);
+            border-radius: var(--radius-input);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 50;
+            min-width: 220px;
+        }
+
+        .dropdown-menu.active {
+            display: block;
+        }
+
+        .dropdown-item {
+            display: block;
+            padding: 0.5rem 1rem;
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.875rem;
+            cursor: pointer;
+        }
+
+        .dropdown-item:hover {
+            background-color: var(--bg-hover);
+        }
+
+        .dropdown-header {
+            padding: 0.5rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 768px) {
+            .page-header {
+                flex-direction: column;
+                align-items: flex-start !important;
+            }
+
+            .header-controls {
+                flex-direction: column;
+                width: 100%;
+                align-items: stretch !important;
+            }
+
+            .header-controls>* {
+                width: 100%;
+                max-width: 100% !important;
+            }
+
+            .pagination-controls {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start !important;
+            }
+
+            .pagination-buttons {
+                width: 100%;
+                justify-content: space-between;
+            }
+        }
+    </style>
 </head>
+
 <body>
 
     <div class="layout-wrapper">
-        
+
         <main class="main-content">
-            
-            <!-- HEADER CON BUSCADOR -->
-            <header class="page-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
+
+            <header class="page-header"
+                style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; margin-bottom: 2rem;">
                 <h1>Socios</h1>
-                
-                <div style="display: flex; gap: 1rem; align-items: center; flex: 1; justify-content: flex-end;">
-                    <!-- Buscador -->
+
+                <div class="header-controls"
+                    style="display: flex; gap: 1rem; align-items: center; flex: 1; justify-content: flex-end;">
+
                     <div class="input-wrapper" style="max-width: 300px; width: 100%;">
-                        <input type="text" id="search-input" placeholder="Buscar por legajo, nombre o DNI..." style="padding: 0.5rem 0.75rem; font-size: 0.875rem;">
+                        <input type="text" id="search-input" placeholder="Buscar legajo, nombre o DNI..."
+                            style="padding: 0.5rem 0.75rem; font-size: 0.875rem;">
                     </div>
-                    <!-- Botón Nuevo Socio -->
-                    <a href="/pages/socios/create" class="btn-minimal" style="text-decoration: none; white-space: nowrap;">Nuevo Socio</a>
+
+                    <div style="display: flex; gap: 0.5rem;">
+                        <!-- MENÚ DE EXPORTACIÓN -->
+                        <div style="position: relative;" id="export-container">
+                            <button id="btn-export-toggle" class="btn-minimal"
+                                style="white-space: nowrap; background-color: #fff; color: #111827; border: 1px solid #d1d5db; display: flex; align-items: center; gap: 0.5rem;">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" style="width: 16px; height: 16px;">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+                                </svg>
+                                Exportar
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                                    stroke="currentColor" style="width: 14px; height: 14px; opacity: 0.5;">
+                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                        d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+                                </svg>
+                            </button>
+
+                            <div id="export-menu" class="dropdown-menu">
+                                <div class="dropdown-header">Página Actual</div>
+                                <a href="#" class="dropdown-item" data-type="excel" data-scope="page">Descargar Excel
+                                    (CSV)</a>
+                                <a href="#" class="dropdown-item" data-type="json" data-scope="page">Descargar JSON</a>
+                                <a href="#" class="dropdown-item" data-type="pdf" data-scope="page">Descargar PDF
+                                    (Imprimir)</a>
+
+                                <hr style="border: none; border-top: 1px solid var(--border-color); margin: 0.25rem 0;">
+
+                                <div class="dropdown-header">Todos los Resultados</div>
+                                <a href="#" class="dropdown-item" data-type="excel" data-scope="all">Descargar Excel
+                                    (CSV)</a>
+                                <a href="#" class="dropdown-item" data-type="json" data-scope="all">Descargar JSON</a>
+                                <a href="#" class="dropdown-item" data-type="pdf" data-scope="all">Descargar PDF
+                                    (Imprimir)</a>
+                            </div>
+                        </div>
+
+                        <a href="/pages/socios/create" class="btn-minimal"
+                            style="text-decoration: none; white-space: nowrap;">Nuevo Socio</a>
+                    </div>
                 </div>
             </header>
 
-            <table class="table-clean">
-                <thead>
-                    <tr>
-                        <th>Legajo</th>
-                        <th>Nombre</th>
-                        <th>DNI</th>
-                        <th>Tipo</th>
-                        <th style="text-align: right;">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="socios-table-body">
-                    <!-- Datos dinámicos cargados por JS -->
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                <table class="table-clean">
+                    <thead>
+                        <tr>
+                            <th>Legajo</th>
+                            <th>Nombre</th>
+                            <th>DNI</th>
+                            <th>Tipo</th>
+                            <th style="text-align: right;">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="socios-table-body">
+                        <!-- Datos dinámicos cargados por JS -->
+                    </tbody>
+                </table>
+            </div>
 
-            <!-- PAGINACIÓN Y FILAS POR PÁGINA -->
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem;">
-                
-                <!-- Selector de cantidad -->
+            <div class="pagination-controls"
+                style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem; border-top: 1px solid var(--border-color); padding-top: 1rem; flex-wrap: wrap; gap: 1rem;">
+
                 <div style="display: flex; align-items: center; gap: 0.5rem;">
-                    <span style="font-size: 0.875rem; color: var(--text-muted);">Filas por página:</span>
-                    <select id="limit-select" style="padding: 0.25rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.875rem; background: transparent; color: var(--text-main);">
+                    <span style="font-size: 0.875rem; color: var(--text-muted);">Filas:</span>
+                    <select id="limit-select"
+                        style="padding: 0.25rem; border: 1px solid var(--border-color); border-radius: 4px; font-size: 0.875rem; background: transparent; color: var(--text-main);">
                         <option value="10">10</option>
                         <option value="25">25</option>
                         <option value="50">50</option>
                     </select>
                 </div>
 
-                <!-- Info y Botones -->
                 <div style="display: flex; align-items: center; gap: 1.5rem;">
                     <span id="pagination-info" style="font-size: 0.875rem; color: var(--text-muted);"></span>
-                    <div style="display: flex; gap: 0.5rem;">
+                    <div class="pagination-buttons" style="display: flex; gap: 0.5rem;">
                         <button id="btn-prev" class="btn-minimal" style="padding: 0.5rem 1rem;">Anterior</button>
                         <button id="btn-next" class="btn-minimal" style="padding: 0.5rem 1rem;">Siguiente</button>
                     </div>
@@ -70,6 +190,10 @@
 
     <script src="/js/layout.js"></script>
     <script src="/js/socios/list.js"></script>
-    
+    <script src="/js/toast.js"></script> <!-- ESTE FALTABA -->
+
 </body>
+
+</body>
+
 </html>
